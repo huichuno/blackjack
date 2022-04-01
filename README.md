@@ -1,18 +1,24 @@
 # blackjack
 
-Tested in Linux environment
+Built and tested on Linux environment. 
+
+On Windows machine, tested on "Ubuntu 20.04 on Window" (WSL2) and Git Bash (https://git-scm.com/downloads)  
 
 
 # Prerequisite
 
-Install golang: https://go.dev/dl/
+Install golang from https://go.dev/dl/
 
 
 # Quick Start
 
+git clone https://github.com/huichuno/blackjack.git
+
+cd blackjack
+
 go run main.go
 
-or 
+  or 
 
 go build .
 
