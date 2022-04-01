@@ -147,7 +147,7 @@ func (g *Game) Start(num int) error {
 			if player.Type == Normal {
 				for {
 					g.displayGameInfo(i, true)
-					fmt.Printf("Press [h] to Hit, [s] to Stay. [%v] : ", player.Name)
+					fmt.Printf("Press [h] to Hit, [s] to Stay, [q] to Quit. [%v] : ", player.Name)
 
 					// read keyboard input
 					reader := bufio.NewReader(os.Stdin)
@@ -162,6 +162,8 @@ func (g *Game) Start(num int) error {
 						player.AddCard(card)
 					} else if c == 's' {
 						break
+					} else if c == 'q' {
+						os.Exit(0)
 					} else {
 						continue
 					}
@@ -216,5 +218,6 @@ func (g *Game) Start(num int) error {
 		fmt.Scanln()
 	}
 
+	fmt.Printf("\n** Thanks for playing Blackjack **\n\n")
 	return nil
 }

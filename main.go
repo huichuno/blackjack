@@ -82,7 +82,7 @@ func registerPlayers() []*blackjack.Player {
 		},
 		{
 			Name:          "   Dealer",
-			Type:          blackjack.Dealer,
+			Type:          blackjack.Dealer, // dealer
 			CardValue:     make(map[int]bool),
 			CardList:      []*blackjack.Card{},
 			TotalPoints:   0,
@@ -108,13 +108,14 @@ func main() {
 	// shuffle deck
 	deck.Shuffle(deck.Top, deck.Bottom)
 
-	// register players
+	// register players. add or remove player in registerPlayers() func
+	// make sure  only 1 dealer among players
 	players := registerPlayers()
 
 	// create game engine
 	blackjackGame := createGame(players, deck)
 
-	// start game
+	// start game. change numberOfRound value to reflect number of round you want to play
 	numberOfRound := 5
 	err := blackjackGame.Start(numberOfRound)
 
