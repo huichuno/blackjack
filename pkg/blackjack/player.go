@@ -30,7 +30,7 @@ type Player struct {
 }
 
 // call this method at the beginning of each game round
-func (p *Player) Clear() {
+func (p *Player) clear() {
 
 	// clear CardList
 	p.CardList = p.CardList[:0]
@@ -46,7 +46,7 @@ func (p *Player) Clear() {
 }
 
 // return closest card value to number 21
-func (p *Player) GetCardValue() int {
+func (p *Player) getCardValue() int {
 
 	var left int = 0
 	var right int = 10000 // aribitary large number, used for comparison
@@ -77,7 +77,7 @@ func (p *Player) GetCardValue() int {
 }
 
 // add points to player
-func (p *Player) Win() {
+func (p *Player) win() {
 
 	// if player's card values equal 21 and only 2 cards on hand
 	if len(p.CardList) == 2 && p.CardValue[21] {
@@ -88,13 +88,13 @@ func (p *Player) Win() {
 }
 
 // deduct points from player
-func (p *Player) Lose() {
+func (p *Player) lose() {
 
 	p.TotalPoints -= 10
 }
 
 // add card to player's hand and calculate card values each time a new card is added
-func (p *Player) AddCard(card *Card) {
+func (p *Player) addCard(card *Card) {
 
 	p.CardList = append(p.CardList, card)
 
@@ -113,7 +113,7 @@ func (p *Player) AddCard(card *Card) {
 
 	// use set "cache" to temporary store card values
 	// Prioirty of setting player's status is "NotExceed" > "Exceeded" > "Undefined"
-	// Player status is set to "Undefined" before AddCard() is called, see game.go
+	// Player status is set to "Undefined" before addCard() is called, see game.go
 	keys := []int{}
 	cache := make(map[int]bool)
 

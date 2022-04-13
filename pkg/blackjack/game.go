@@ -84,18 +84,18 @@ func (g *Game) findWinnerLoser(dealerCardValue int) {
 
 		// for player with card value <= 21
 		if dealerCardValue > 21 {
-			player.Win()
+			player.win()
 			player.DisplayStatus = DisplayWin
 
 		} else {
 			// player with card value > 21
-			playerCardValue := player.GetCardValue()
+			playerCardValue := player.getCardValue()
 
 			if playerCardValue > dealerCardValue {
-				player.Win()
+				player.win()
 				player.DisplayStatus = DisplayWin
 			} else if playerCardValue < dealerCardValue {
-				player.Lose()
+				player.lose()
 				player.DisplayStatus = DisplayLose
 			} else {
 				player.DisplayStatus = DisplayPush
@@ -125,16 +125,16 @@ func (g *Game) Start(num int) error {
 		for _, player := range g.Players {
 			// since we are iterating thru all players, let reset player's card,
 			// cardvalue and status at beginning of each round,
-			player.Clear()
+			player.clear()
 
 			card := g.pop()
-			player.AddCard(card)
+			player.addCard(card)
 		}
 
 		// dealing 2nd card..
 		for _, player := range g.Players {
 			card := g.pop()
-			player.AddCard(card)
+			player.addCard(card)
 		}
 
 		var dealerCardValue int
@@ -159,7 +159,7 @@ func (g *Game) Start(num int) error {
 					if c == 'h' {
 						player.Status = Undefined
 						card := g.pop()
-						player.AddCard(card)
+						player.addCard(card)
 					} else if c == 's' {
 						break
 					} else if c == 'q' {
@@ -170,7 +170,7 @@ func (g *Game) Start(num int) error {
 
 					// break loop if player's card value exceeded 21
 					if player.Status == Exceeded {
-						player.Lose()
+						player.lose()
 						player.DisplayStatus = DisplayLose
 						loseCount++
 						break
@@ -196,14 +196,14 @@ func (g *Game) Start(num int) error {
 					fmt.Scanln()
 
 					// break if dealer's card value is larger than 16
-					dealerCardValue = player.GetCardValue()
+					dealerCardValue = player.getCardValue()
 					if dealerCardValue > 16 {
 						break
 					}
 
 					player.Status = Undefined
 					card := g.pop()
-					player.AddCard(card)
+					player.addCard(card)
 				}
 			}
 			if player.DisplayStatus == DisplayNow {

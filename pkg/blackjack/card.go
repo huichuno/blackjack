@@ -51,7 +51,7 @@ func (d *Deck) Shuffle(top int, bottom int) {
 }
 
 // cards on players' hand (dealed) are move to bottom of Deck stack
-func (d *Deck) MoveDealedCards(start int, end int) {
+func (d *Deck) moveDealedCards(start int, end int) {
 	count := end - start + 1
 	i := LastCard
 	j := end
@@ -78,7 +78,7 @@ func (d *Deck) Pop() *Card {
 	if d.Top >= d.Bottom {
 
 		// move dealed player's card to bottom of Deck stack
-		d.MoveDealedCards(d.Lock, d.Top-1)
+		d.moveDealedCards(d.Lock, d.Top-1)
 		dealedCardCount := d.Top - d.Lock
 
 		d.Top = 1
